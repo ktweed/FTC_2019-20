@@ -29,6 +29,9 @@ public class TeleOp1 extends LinearOpMode {
     private boolean leftBrake = false;
     private boolean rightBrake = false;
 
+    int ledFix = 0;
+    int ledBlink = 0;
+
     DigitalChannel leftLed;
     DigitalChannel rightLed;
     DigitalChannel backLeds;
@@ -151,20 +154,32 @@ public class TeleOp1 extends LinearOpMode {
                 telemetry.update();
             }
 
-            if (gamepad1.left_bumper) {
-                leftTurn = !leftTurn;
-            }
+            if (ledFix == 0) {
+                if (gamepad1.left_bumper) {
+                    leftTurn = !leftTurn;
+                    ledFix = 2000;
+                }
 
-            if (gamepad1.right_bumper) {
-                rightTurn = !rightTurn;
+                if (gamepad1.right_bumper) {
+                    rightTurn = !rightTurn;
+                    ledFix = 2000;
+                }
             }
 
             if (leftTurn) {
-                leftLed.setState(true);
+                if (ledBlink < 1000) {
+                    leftLed.setState(true);
+                } else {
+                    leftLed.setState(false);
+                }
             } else {leftLed.setState(false);}
 
             if (rightTurn) {
-                rightLed.setState(true);
+                if (ledBlink < 1000) {
+                    rightLed.setState(true);
+                } else {
+                    rightLed.setState(false);
+                }
             } else {rightLed.setState(false);}
 
             if (leftBrake & rightBrake) {
@@ -173,6 +188,15 @@ public class TeleOp1 extends LinearOpMode {
             } else {
                 cdi.setLED(1, false);
                 backLeds.setState(false);
+            }
+
+            if (ledFix > 0) {
+                ledFix--;
+            }
+            ledBlink++;
+
+            if (ledBlink > 2000) {
+                ledBlink = 0;
             }
         }
     }

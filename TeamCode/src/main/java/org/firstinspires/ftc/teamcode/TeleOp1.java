@@ -8,6 +8,7 @@ import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="TeleOp1", group="Linear Opmode")
 
@@ -38,14 +39,21 @@ public class TeleOp1 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-
         // Initialize Hardware
         leftRear = hardwareMap.get(DcMotor.class, "backLeft");
         leftFront = hardwareMap.get(DcMotor.class, "frontLeft");
         rightRear = hardwareMap.get(DcMotor.class, "backRight");
         rightFront = hardwareMap.get(DcMotor.class, "frontRight");
+
+        telemetry.addData("Motors", "Ready");
+        telemetry.update();
+
         color = hardwareMap.get(ModernRoboticsI2cColorSensor.class, "color");
         cdi = hardwareMap.deviceInterfaceModule.get("Device Interface Module 1");
+
+        telemetry.addData("Motors", "Ready");
+        telemetry.addData("Device Interface", "Ready");
+        telemetry.update();
 
         leftLed = hardwareMap.get(DigitalChannel.class, "leftLed");
         rightLed = hardwareMap.get(DigitalChannel.class, "rightLed");
@@ -54,6 +62,11 @@ public class TeleOp1 extends LinearOpMode {
         leftLed.setMode(DigitalChannel.Mode.OUTPUT);
         rightLed.setMode(DigitalChannel.Mode.OUTPUT);
         backLeds.setMode(DigitalChannel.Mode.OUTPUT);
+
+        telemetry.addData("Motors", "Ready");
+        telemetry.addData("Device Interface", "Ready");
+        telemetry.addData("Lighting", "Ready");
+        telemetry.update();
 
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -151,7 +164,6 @@ public class TeleOp1 extends LinearOpMode {
                 telemetry.addData("Red: ", color.red());
                 telemetry.addData("Green: ", color.green());
                 telemetry.addData("Blue: ", color.blue());
-                telemetry.update();
             }
 
             if (ledFix == 0) {
@@ -198,6 +210,8 @@ public class TeleOp1 extends LinearOpMode {
             if (ledBlink > 2000) {
                 ledBlink = 0;
             }
+
+            telemetry.update();
         }
     }
 }

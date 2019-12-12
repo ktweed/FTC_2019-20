@@ -1,5 +1,4 @@
 # Engineering Notebook - November 22nd
----
 ### Members Present:
 Amog, Aron, Keith
 

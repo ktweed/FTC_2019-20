@@ -1,5 +1,4 @@
 # Engineering Notebook - November 26th
----
 ### Members Present:
 Amog, Aron, Keith
 
@@ -15,7 +14,9 @@ The color sensor only has a range of a couple centimeters, so we will need to be
 
 ### Details, Diagrams, and Images
 These are the color sensors we are using, from Modern Robotics.
-<img src="https://x.system32.ca/3KnwI">
 
-This is the color sensor attached to the front of our robot
-<img src="https://x.system32.ca/9d16X">
+![Image of our color sensor](images/112601.png)
+
+This is the color sensor attached to the front of our robot.
+
+![Image of the color sensor attached to the robot](images/112602.png)

@@ -1,5 +1,4 @@
 # Engineering Notebook - November 20th
----
 ### Members Present:
 Aron, Amog, Keith
 
@@ -14,7 +13,9 @@ The mechanum wheels didn't work very well last year, so the standard wheels shou
 
 ### Details, Diagrams, and Images
 This is the phone mount we constructed, that doesn't obstruct the phone's screen, buttons, and ports.
-<img src="https://x.system32.ca/Aj9Mx">
+
+![Image of the phone mount](images/112001.png)
 
 These are the wheels we decided to use
-<img src="https://x.system32.ca/cbceH">
+
+![Image of one of the wheels](images/122002.png)

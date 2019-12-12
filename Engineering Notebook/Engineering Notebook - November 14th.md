@@ -1,5 +1,4 @@
-# Engineering Notebook - November 14th
----
+# Engineering Notebook - November 14
 ### Members Present:
 Aron, Amog, Keith
 
@@ -13,4 +12,4 @@ We attached the motor controllers to the top layer of the chassis, and attached 
 We designed a battery holder that allows us to easily remove and reattach the battery. It has 2 large velcro strips held to the chassis by a metal plate, so we can wrap the velcro around the battery to hold it in place.
 
 ### Details, Diagrams, and Images
-<img src="https://x.system32.ca/R79L4">
+![Image of the battery holder](images/111401.png)

@@ -1,5 +1,4 @@
 # Engineering Notebook - Template
----
 ### Members Present:
 
 

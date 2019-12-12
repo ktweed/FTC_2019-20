@@ -1,5 +1,4 @@
 # Engineering Notebook - November 7th
----
 ### Members Present:
 Amog, Aron, Keith
 
@@ -13,6 +12,6 @@ We moved the supporting C-channels proposed in the middle in the design, further
 The robot may be a bit back-heavy, if so we can add more weight to the front with an arm or lift mechanism.
 
 ### Details, Diagrams, and Images
-<img src="https://trello-attachments.s3.amazonaws.com/5de6a709511fbd8a4c5c236c/5de6aaee3171a822a7bbb7d2/5c0b27015cfde4eb7ef421cecc2011c9/image.png">
+![Image of the front motors attached to the chassis](images/110701.png)
 
 This is the front of our chassis with the motors and wheels attached and the wires being managed towards the rear, where we will mount the motor controllers.

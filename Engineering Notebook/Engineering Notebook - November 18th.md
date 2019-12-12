@@ -1,5 +1,4 @@
 # Engineering Notebook - November 18th
----
 ### Members Present:
 Aron, Amog, Keith
 
@@ -14,6 +13,10 @@ Since we have a similar build in terms of motors to last year's robot, we should
 
 
 ### Details, Diagrams, and Images
-<img src="https://x.system32.ca/NFcKO">
-<img src="https://x.system32.ca/hevAJ">
-<img src="https://x.system32.ca/H9Qmf">
+![Image of the Core Power Distribution Module attached to the robot](images/111801.png)
+
+![Image of one of the DC motor controllers attached to the robot](images/111802.png)
+
+We had to cut off part of the casing of the DC motor controller, since the encoder wires wouldn't fit.
+
+![Image of the other DC motor controller attached to the robot](images/111803.png)

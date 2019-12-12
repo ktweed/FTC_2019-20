@@ -1,5 +1,4 @@
 # Engineering Notebook - December 5th
----
 ### Members Present:
 Amog, Aron, Keith
 
@@ -16,7 +15,9 @@ We finished attaching the plow, and moved the color sensor onto it to allow us t
 We will need to reinforce the opposite side next class, as it cannot hold itself in place from the single attachment point on the servo.
 
 ### Details, Diagrams, and Images
-<img src="https://x.system32.ca/5RjpJ">
-<img src="https://x.system32.ca/eXuKs">
-<img src="https://x.system32.ca/b4R35">
+![Image of the front plate](images/120501.png)
+
+![Image of the entire robot](images/120502.png)
+
+![Image of the entire robot from the top](images/120503.jpg)
 

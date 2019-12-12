@@ -1,5 +1,4 @@
 # Engineering Notebook - December 3rd
----
 ### Members Present:
 Amog, Aron, Keith
 
@@ -13,10 +12,14 @@ We added LED lights to add more flair to our robot, and to make it easier to sig
 It would be much easier to have the buttons be toggle, rather than momentary control. I will attempt to add this before next class.
 
 ### Details, Diagrams, and Images
-<img src="https://x.system32.ca/BEHof">
-<img src="https://x.system32.ca/w0ShJ">
-<img src="https://x.system32.ca/P85N7">
-<img src="https://x.system32.ca/uKzl2">
-<img src="https://x.system32.ca/ny9z3">
+![Image of the flag mount and rear LEDs](images/120301.jpg)
 
-https://github.com/ktweed/FTC_2019-20/commit/3c42bd446d854fa9c52e1ce9436dc23c26b2de5d
+![Close up image of one rear LED](images/120302.png)
+
+![Close-up image of the left turn LED](images/120303.png)
+
+![Image of the back of the robot](images/120304.png)
+
+![Image of the front of the robot](images/120305.png)
+
+Git commit: [https://github.com/ktweed/FTC_2019-20/commit/3c42bd446d854fa9c52e1ce9436dc23c26b2de5d](https://github.com/ktweed/FTC_2019-20/commit/3c42bd446d854fa9c52e1ce9436dc23c26b2de5d)

@@ -21,6 +21,7 @@ public class TeleOp1 extends LinearOpMode {
     private DcMotor leftFront = null;
     private DcMotor rightRear = null;
     private DcMotor rightFront = null;
+    private DcMotor dcArm = null;
 
     private DeviceInterfaceModule cdi;
     private ModernRoboticsI2cColorSensor color;
@@ -32,6 +33,8 @@ public class TeleOp1 extends LinearOpMode {
 
     int ledFix = 0;
     int ledBlink = 0;
+
+    int dpadDebounce = 0;
 
     DigitalChannel leftLed;
     DigitalChannel rightLed;
@@ -71,7 +74,11 @@ public class TeleOp1 extends LinearOpMode {
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        //
+        dcArm = hardwareMap.get(DcMotor.class, "dcArm");
+        dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        dcArm.setPower(0.5);
+        dcArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -161,9 +168,26 @@ public class TeleOp1 extends LinearOpMode {
             }
 
             if (gamepad1.x) {
-                telemetry.addData("Red: ", color.red());
-                telemetry.addData("Green: ", color.green());
-                telemetry.addData("Blue: ", color.blue());
+                telemetry.addData("Red", color.red());
+                telemetry.addData("Green", color.green());
+                telemetry.addData("Blue", color.blue());
+            }
+
+            if (gamepad1.y) {
+                telemetry.addData("Encoder Position", dcArm.getCurrentPosition());
+                telemetry.addData("Power", dcArm.getPower());
+            }
+
+            if (gamepad1.dpad_up) {
+                dcArm.setTargetPosition(100);
+            } else if (gamepad1.dpad_down) {
+                dcArm.setTargetPosition(-450);
+            }
+
+            if (gamepad1.dpad_left) {
+                dcArm.setPower(0);
+            } else if (gamepad1.dpad_right) {
+                dcArm.setPower(0.5);
             }
 
             if (ledFix == 0) {
@@ -207,11 +231,17 @@ public class TeleOp1 extends LinearOpMode {
             }
             ledBlink++;
 
+            if (dpadDebounce > 0) {
+                dpadDebounce--;
+            }
+
             if (ledBlink > 2000) {
                 ledBlink = 0;
             }
 
             telemetry.update();
+
+            dcArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
     }
 }

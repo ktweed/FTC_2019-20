@@ -1,4 +1,4 @@
-# Engineering Notebook - Template
+# Engineering Notebook - December 13th
 ### Members Present:
 Aron, Amog, Keith
 

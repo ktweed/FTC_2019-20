@@ -1,6 +1,6 @@
 # Engineering Notebook - December 11th
 ### Members Present:
-
+Aron, Amog, Keith
 
 ### Objectives:
 - Remove the plow mechanism

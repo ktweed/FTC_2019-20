@@ -34,8 +34,6 @@ public class TeleOp1 extends LinearOpMode {
     int ledFix = 0;
     int ledBlink = 0;
 
-    int dpadDebounce = 0;
-
     DigitalChannel leftLed;
     DigitalChannel rightLed;
     DigitalChannel backLeds;
@@ -76,7 +74,7 @@ public class TeleOp1 extends LinearOpMode {
 
         dcArm = hardwareMap.get(DcMotor.class, "dcArm");
         dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcArm.setPower(0.5);
+        dcArm.setPower(0.05);
         dcArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         telemetry.addData("Status", "Initialized");
@@ -179,15 +177,15 @@ public class TeleOp1 extends LinearOpMode {
             }
 
             if (gamepad1.dpad_up) {
-                dcArm.setTargetPosition(100);
+                dcArm.setTargetPosition(70);
             } else if (gamepad1.dpad_down) {
-                dcArm.setTargetPosition(-450);
+                dcArm.setTargetPosition(-350);
             }
 
             if (gamepad1.dpad_left) {
                 dcArm.setPower(0);
             } else if (gamepad1.dpad_right) {
-                dcArm.setPower(0.5);
+                dcArm.setPower(0.05);
             }
 
             if (ledFix == 0) {
@@ -231,10 +229,6 @@ public class TeleOp1 extends LinearOpMode {
             }
             ledBlink++;
 
-            if (dpadDebounce > 0) {
-                dpadDebounce--;
-            }
-
             if (ledBlink > 2000) {
                 ledBlink = 0;
             }
@@ -245,4 +239,3 @@ public class TeleOp1 extends LinearOpMode {
         }
     }
 }
-

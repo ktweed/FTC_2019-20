@@ -66,8 +66,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Blue Team | Stones", group="SkyStone")
-public class AutonomousBlueByStones extends LinearOpMode {
+@Autonomous(name="Right Turn Test", group="SkyStone")
+public class AutonomousRightTurnTest extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor leftRear = null;
@@ -92,7 +92,7 @@ public class AutonomousBlueByStones extends LinearOpMode {
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.6;
     static final double     TURN_SPEED              = 0.5;
-    static final double     inchesRightAngle        = 11.5;
+    static final double     inchesRightAngle        = 11;
     Integer[] block = new Integer[3];
 
 
@@ -150,63 +150,7 @@ public class AutonomousBlueByStones extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED,  28,  28, 10.0); // Forward 28 inches
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, inchesRightAngle, -inchesRightAngle, 10); // Right turn 90 degrees
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, 12, 12, 10);
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, -20, 20, 10);
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, 6, 6, 10); //at first block
-        sleep(1000);
-        block[0] = color.red();
-        encoderDrive(DRIVE_SPEED, 8, 8, 10); // at second block
-        sleep(1000);
-        block[1] = color.red();
-        encoderDrive(DRIVE_SPEED, 8, 8, 10); // at third block
-        sleep(1000);
-        block[2] = color.red();
-        if (block[0] < block[1] && block[0] < block[2]) {
-            // Block 0 is skystone
-            encoderDrive(DRIVE_SPEED, -16, -16, 10);
-            sleep(1000);
-            stoneFound = 0;
-        } else if (block[1] < block[0] && block[1] < block[2]) {
-            // Block 1 is skystone
-            encoderDrive(DRIVE_SPEED, -8, -8, 10);
-            sleep(1000);
-            stoneFound = 1;
-        } else {
-            // If block 2 is skystone, no movement is necessary
-            sleep(1000);
-            stoneFound = 2;
-        }
-        telemetry.addData("Stone Found:", stoneFound);
-        telemetry.update();
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, inchesRightAngle, -inchesRightAngle, 10);
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, 24, 24, 10); // push through the line of skystones
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, -inchesRightAngle, inchesRightAngle, 10); // left turn 90 degrees
-        if (stoneFound == 0) { // move to position of 3rd stone
-            encoderDrive(DRIVE_SPEED, 16, 16, 10);
-        } else if (stoneFound == 1) {
-            encoderDrive(DRIVE_SPEED, 8, 8, 10);
-        }
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, 52, 52, 20); // move forward to platform
-        sleep(1000);
-        dcArm.setTargetPosition(-350);
-        encoderDrive(DRIVE_SPEED, -(inchesRightAngle/2), inchesRightAngle/2, 10); // 45 degree turn
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, 54, 54, 10); // move into corner
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, (inchesRightAngle/2), -(inchesRightAngle/2), 10); // turn back
-        sleep(1000);
-        encoderDrive(DRIVE_SPEED, -50, -50, 10); // move to line
-        sleep(1000);
+        encoderDrive(DRIVE_SPEED, -inchesRightAngle, inchesRightAngle, 10);
 
 
 
@@ -276,7 +220,7 @@ public class AutonomousBlueByStones extends LinearOpMode {
                         rightRear.getCurrentPosition(),
                         leftFront.getCurrentPosition(),
                         rightFront.getCurrentPosition()
-                        );
+                );
                 telemetry.update();
             }
 

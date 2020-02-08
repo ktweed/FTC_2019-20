@@ -1,4 +1,4 @@
-# Engineering Notebook - Template
+# Engineering Notebook - February 6th
 ### Members Present:
 Amog, Aron, Keith
 

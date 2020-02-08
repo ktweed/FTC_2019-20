@@ -74,7 +74,7 @@ public class TeleOp1 extends LinearOpMode {
 
         dcArm = hardwareMap.get(DcMotor.class, "dcArm");
         dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcArm.setPower(0.05);
+        dcArm.setPower(1);
         dcArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         telemetry.addData("Status", "Initialized");
@@ -179,13 +179,17 @@ public class TeleOp1 extends LinearOpMode {
             if (gamepad1.dpad_up) {
                 dcArm.setTargetPosition(0);
             } else if (gamepad1.dpad_down) {
-                dcArm.setTargetPosition(-720);
+                dcArm.setTargetPosition(1440);
             }
 
             if (gamepad1.dpad_left) {
                 dcArm.setPower(0);
             } else if (gamepad1.dpad_right) {
-                dcArm.setPower(0.05);
+                dcArm.setPower(1);
+            }
+
+            if (gamepad1.a) {
+                dcArm.setTargetPosition(1800);
             }
 
             if (ledFix == 0) {

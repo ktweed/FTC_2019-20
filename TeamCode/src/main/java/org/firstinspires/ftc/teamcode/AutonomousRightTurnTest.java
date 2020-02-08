@@ -66,7 +66,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Right Turn Test", group="SkyStone")
+@Autonomous(name="Autonomous", group="SkyStone")
 public class AutonomousRightTurnTest extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -133,7 +133,7 @@ public class AutonomousRightTurnTest extends LinearOpMode {
 
         dcArm = hardwareMap.get(DcMotor.class, "dcArm");
         dcArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcArm.setPower(0.05);
+        dcArm.setPower(1);
         dcArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -150,8 +150,7 @@ public class AutonomousRightTurnTest extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED, -inchesRightAngle, inchesRightAngle, 10);
-
+        encoderDrive(DRIVE_SPEED, 30, 30, 10);
 
 
 

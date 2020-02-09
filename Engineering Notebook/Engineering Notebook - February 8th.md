@@ -32,8 +32,16 @@ Our robot seemed to do everything we thought it would do, and quite consistently
 - Our robot works quite well for support, and can move the foundation out
 - Practice more
 - Put some loctite on the set screws for the arm and wheels to ensure they don't come loose (lots of vibration during turns)
-
+- Buttons on the side of the robot to detect a collision and stop the auto program to prevent us from hurting ourselves if we hit a robot and go off course (Healios)
 
 #### Other Notes
-- We **need** to ensure that breadboards are competition legal before provincials
-- 
+- We **need** to ensure that breadboards are competition legal before provincials, or solder the resistors and wires directly together.
+
+#### Images
+![Image of the robot from the left side](images/020801.jpg)
+
+![Image of the main power switch, moved](images/020802.jpg)
+
+![Image of the robot from the right side](images/020803.jpg)
+
+![Image of the robot from the top side](images/020804.jpg)

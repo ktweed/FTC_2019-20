@@ -22,6 +22,17 @@ public class TeleOp1 extends LinearOpMode {
     private DcMotor rightRear = null;
     private DcMotor rightFront = null;
     private DcMotor dcArm = null;
+    private DcMotor dcGrab = null;
+
+    private boolean rbPress = false;
+    private boolean lbPress = false;
+    private boolean lsPress = false;
+    private boolean rsPress = false;
+
+    private int grabPosLast = 0;
+
+    private int grabPos = 0;
+    private int armPos = 0;
 
     private DeviceInterfaceModule cdi;
     private ModernRoboticsI2cColorSensor color;
@@ -30,6 +41,9 @@ public class TeleOp1 extends LinearOpMode {
     private boolean rightTurn = false;
     private boolean leftBrake = false;
     private boolean rightBrake = false;
+
+    private boolean grabLock = false;
+    private boolean armLock = false;
 
     int ledFix = 0;
     int ledBlink = 0;
@@ -77,6 +91,11 @@ public class TeleOp1 extends LinearOpMode {
         dcArm.setPower(1);
         dcArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        dcGrab = hardwareMap.get(DcMotor.class, "dcGrab");
+        dcGrab.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        dcGrab.setPower(1);
+        dcGrab.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -92,7 +111,7 @@ public class TeleOp1 extends LinearOpMode {
 
             // Left Side Tank Control
 
-            if (gamepad1.left_stick_y < 0.1) {
+            if (gamepad1.left_stick_y < 0.2) {
 
                 // leftRear.setPower(1);
                 // leftFront.setPower(1);
@@ -104,7 +123,7 @@ public class TeleOp1 extends LinearOpMode {
 
             }
 
-            if (gamepad1.left_stick_y > -0.1) {
+            if (gamepad1.left_stick_y > -0.2) {
 
                 // leftRear.setPower(-1);
                 // leftFront.setPower(-1);
@@ -116,9 +135,9 @@ public class TeleOp1 extends LinearOpMode {
 
             }
 
-            if (gamepad1.left_stick_y < 0.1) {
+            if (gamepad1.left_stick_y < 0.2) {
 
-                if (gamepad1.left_stick_y > -0.1) {
+                if (gamepad1.left_stick_y > -0.2) {
 
                     leftRear.setPower(0);
                     leftFront.setPower(0);
@@ -131,7 +150,7 @@ public class TeleOp1 extends LinearOpMode {
 
             // Right Side Tank Control
 
-            if (gamepad1.right_stick_y < 0.1) {
+            if (gamepad1.right_stick_y < 0.2) {
 
                 // rightRear.setPower(1);
                 // rightFront.setPower(1);
@@ -142,7 +161,7 @@ public class TeleOp1 extends LinearOpMode {
                 rightBrake = false;
             }
 
-            if (gamepad1.right_stick_y > -0.1) {
+            if (gamepad1.right_stick_y > -0.2) {
 
                 // rightRear.setPower(-1);
                 // rightFront.setPower(-1);
@@ -153,9 +172,9 @@ public class TeleOp1 extends LinearOpMode {
                 rightBrake = false;
             }
 
-            if (gamepad1.right_stick_y < 0.1) {
+            if (gamepad1.right_stick_y < 0.2) {
 
-                if (gamepad1.right_stick_y > -0.1) {
+                if (gamepad1.right_stick_y > -0.2) {
 
                     rightRear.setPower(0);
                     rightFront.setPower(0);
@@ -192,20 +211,26 @@ public class TeleOp1 extends LinearOpMode {
                 dcArm.setTargetPosition(1800);
             }
 
-            if (ledFix == 0) {
-                if (gamepad1.left_bumper) {
+                if (gamepad1.left_bumper && !lbPress) {
                     leftTurn = !leftTurn;
-                    ledFix = 2000;
+                    lbPress = true;
                 }
 
-                if (gamepad1.right_bumper) {
-                    rightTurn = !rightTurn;
-                    ledFix = 2000;
+                if (!gamepad1.left_bumper) {
+                    lbPress = false;
                 }
-            }
+
+                if (gamepad1.right_bumper && !rbPress) {
+                    rightTurn = !rightTurn;
+                    rbPress = true;
+                }
+
+                if (!gamepad1.right_bumper) {
+                    rbPress = false;
+                }
 
             if (leftTurn) {
-                if (ledBlink < 1000) {
+                if (ledBlink < 3000) {
                     leftLed.setState(true);
                 } else {
                     leftLed.setState(false);
@@ -213,7 +238,7 @@ public class TeleOp1 extends LinearOpMode {
             } else {leftLed.setState(false);}
 
             if (rightTurn) {
-                if (ledBlink < 1000) {
+                if (ledBlink < 3000) {
                     rightLed.setState(true);
                 } else {
                     rightLed.setState(false);
@@ -228,18 +253,58 @@ public class TeleOp1 extends LinearOpMode {
                 backLeds.setState(false);
             }
 
-            if (ledFix > 0) {
-                ledFix--;
-            }
+            telemetry.addData("Trigger Position", gamepad1.left_trigger);
+
             ledBlink++;
 
-            if (ledBlink > 2000) {
+            if (ledBlink > 6000) {
                 ledBlink = 0;
+            }
+
+            if (gamepad1.left_stick_button && !lsPress) {
+                grabLock = !grabLock;
+                grabPos = dcGrab.getCurrentPosition();
+                lsPress = true;
+            }
+
+            if (!gamepad1.left_stick_button) {
+                lsPress = false;
+            }
+
+            if (gamepad1.right_stick_button && !rsPress) {
+                armLock = !armLock;
+                armPos = dcArm.getCurrentPosition();
+                rsPress = true;
+            }
+
+            if (!gamepad1.right_stick_button) {
+                rsPress = false;
+            }
+
+
+            if (!grabLock) {
+                dcGrab.setTargetPosition((int) (gamepad1.left_trigger * 2100));
+                dcGrab.setPower(1);
+            } else {
+                dcGrab.setTargetPosition(grabPos);
+            }
+
+            if (!armLock) {
+                if (gamepad1.right_trigger > 0.1) {
+                    dcArm.setTargetPosition((int) (1600 - (gamepad1.right_trigger * 1600)));
+                }
+            } else {
+                dcArm.setTargetPosition(armPos);
             }
 
             telemetry.update();
 
             dcArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            dcGrab.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            if (gamepad1.left_stick_button) {
+                dcGrab.setPower(0);
+            }
         }
     }
 }

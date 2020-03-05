@@ -198,7 +198,7 @@ public class TeleOp1 extends LinearOpMode {
             if (gamepad1.dpad_up) {
                 dcArm.setTargetPosition(0);
             } else if (gamepad1.dpad_down) {
-                dcArm.setTargetPosition(1440);
+                dcArm.setTargetPosition(1400);
             }
 
             if (gamepad1.dpad_left) {
